@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 public class LoginApp extends JFrame {
     private JTextField emailField;
     private JPasswordField passwordField;
-    private static final String DB_URL = "jdbc:mysql://8888:3306/assignment";
+    private static final String DB_URL = "jdbc:mysql://localhost:8888/assignment";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "03052002";
 
