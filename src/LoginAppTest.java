@@ -6,37 +6,50 @@ public class LoginAppTest {
     private final LoginApp loginApp = new LoginApp();
 
     @Test
-    public void testValidEmail() {
+    public void testValidEmailAndPassword() {
         String email = "zeeshan@topg.com";
-        String result = loginApp.authenticateUser(email);
-        assertNotNull(result, "Login should be successful with a valid email.");
+        String password = "password202";
+        String result = loginApp.authenticateUser(email, password);
+        assertNotNull(result, "Login should be successful with a valid email and password.");
     }
 
     @Test
     public void testInvalidEmail() {
-        String email = "invalid@example.com";
-        String result = loginApp.authenticateUser(email);
-        assertNull(result, "Login should fail with an incorrect email.");
+        String email = "ffd@ddd.com";
+        String password = "2212321";
+        String result = loginApp.authenticateUser(email, password);
+        assertNull(result, "Incorrect email.");
     }
 
     @Test
     public void testEmptyEmail() {
         String email = "";
-        String result = loginApp.authenticateUser(email);
-        assertNull(result, "Login should fail when the email field is empty.");
+        String password = "anyPassword";  // Any password
+        String result = loginApp.authenticateUser(email, password);
+        assertNull(result, "Email field is empty.");
     }
 
     @Test
     public void testSqlInjectionInEmail() {
         String email = "admin' OR '1'='1";
-        String result = loginApp.authenticateUser(email);
-        assertNull(result, "Login should fail if there is an SQL injection attempt in the email field.");
+        String password = "anyPassword";
+        String result = loginApp.authenticateUser(email, password);
+        assertNull(result, "SQL injection attempt in the email field.");
     }
 
     @Test
     public void testNonExistentEmail() {
         String email = "nonExistentUser@example.com";
-        String result = loginApp.authenticateUser(email);
-        assertNull(result, "Login should fail if the email does not exist in the database.");
+        String password = "anyPassword";
+        String result = loginApp.authenticateUser(email, password);
+        assertNull(result, "Email does not exist in the database.");
+    }
+
+    @Test
+    public void testInvalidPassword() {
+        String email = "zeeshan@topg.com";  // Valid email
+        String password = "invalidPassword";  // Invalid password
+        String result = loginApp.authenticateUser(email, password);
+        assertNull(result, "Login should fail with a valid email but invalid password.");
     }
 }
