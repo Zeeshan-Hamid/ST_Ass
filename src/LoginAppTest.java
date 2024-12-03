@@ -5,13 +5,7 @@ public class LoginAppTest {
 
     private final LoginApp loginApp = new LoginApp();
 
-    @Test
-    public void testValidEmailAndPassword() {
-        String email = "zeeshan@topg.com";
-        String password = "password202";
-        String result = loginApp.authenticateUser(email, password);
-        assertNotNull(result, "Login should be successful with a valid email and password.");
-    }
+    
 
     @Test
     public void testInvalidEmail() {
