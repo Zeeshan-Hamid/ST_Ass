@@ -10,13 +10,14 @@ import java.sql.ResultSet;
 public class LoginApp extends JFrame {
     private JTextField emailField;
     private JPasswordField passwordField;
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/softwaretesting";
+    private static final String DB_URL = "jdbc:mysql://localhost:8080/softwaretesting";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "12345678";
+    private static final String DB_PASSWORD = "03052002";
 
     public LoginApp() {
-        setTitle("Login Screen");
-        setSize(350, 200);
+        
+        setTitle("Login Screen CI CD Pipeline");
+        setSize(350, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -56,7 +57,7 @@ public class LoginApp extends JFrame {
         }
     }
 
-    private String authenticateUser(String email) {
+    public String authenticateUser(String email) {
         String userName = null;
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             String query = "SELECT name FROM User WHERE Email = ?";
@@ -76,9 +77,10 @@ public class LoginApp extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            LoginApp loginApp = new LoginApp();
-            loginApp.setVisible(true);
-        });
-    }
+    SwingUtilities.invokeLater(() -> {
+        LoginApp loginApp = new LoginApp();
+        loginApp.setVisible(true);
+       System.out.println("Final version of CI/CD pipeline created");
+    });
+}
 }
